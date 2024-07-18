@@ -1,0 +1,240 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+
+  --ff-primary: 'Poppins', sans-serif;
+  --text-color: #E1E1E6;
+
+  
+  --thead: #092D38;
+  --primary-color: #06161b7e;
+  --secondary-color: #06181ccc;
+  
+}
+
+body {
+  font-size: 1.6rem;
+  color: var(--text-color);
+  background-color: #000000;
+}
+
+body * {
+  font-family: var(--ff-primary);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+#app {
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin: 2.5rem 0;
+}
+
+header img {
+  height: 14rem; 
+    width: 14rem; 
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+}
+
+.search input {
+  width: 42rem;
+  height: 3.2rem;
+  border: none;
+  border-radius: .4rem ;
+  padding: 0 1.4rem;
+  background-color: #06181C;
+  font-size: 1.2rem;
+  color: var(--text-color);
+}
+
+.search button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #065E7C;
+  border-radius: .4rem ;
+  height: 3.2rem;
+  width: 12rem;
+  border: none;
+  padding: 0 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  cursor: pointer;
+}
+
+.search button img {
+  margin-right: 0.5rem;
+  height: 1.6rem; 
+  width: 1.6rem; 
+  
+}
+
+.search button:hover img {
+    filter: brightness(0) invert(30%) sepia(1) saturate(5000%) hue-rotate(170deg);
+}
+
+
+
+.search button span {
+  color: var(--text-color);
+  font-size: 1.0rem;
+  font-weight: bold;
+  
+}
+
+
+.search button:hover span {
+  color: #065E7C;
+}
+
+.search button:hover {
+  background-color: #fffffff0;
+  
+  
+}
+
+table {
+  width: 100%;
+  height: 30rem;
+  border: 1px solid #4A808C;
+  border-spacing: 0;
+  border-radius: 1.5rem;
+  overflow: hidden; 
+}
+
+table * {
+  font-size: 1.4rem;
+  color: var(--text-color);
+  
+}
+
+/* está interferindo na largura do tbody*/
+
+
+.scrollable::-webkit-scrollbar {
+  width: 0.4rem; 
+  height: 1rem;
+}
+
+.scrollable::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background: #4A808C; 
+  border-radius: 1rem 
+}
+
+
+table th {
+  background: var(--thead);
+  text-align: left;
+  font-weight: bold;
+  padding: 1.5rem;
+  
+}
+
+table th:first-child {
+  border-top-left-radius: 1.5rem;
+}
+
+table th:last-child {
+  border-top-right-radius: 1.5rem;
+}
+
+/* não funcionou*/
+table tr:last-child td:first-child  {
+  border-bottom-left-radius: 1.5rem;
+}
+
+table tr:last-child td:last-child {
+  border-bottom-right-radius: 1.5rem;
+}
+
+
+table tr:nth-child(even) {
+  background: var(--secondary-color);
+  
+}
+
+table tr:nth-child(odd) {
+  background: var(--primary-color);
+}
+
+table td {
+  padding: 1.5rem;
+  text-align: left;
+}
+
+td.user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+
+td.user img {
+  width: 5rem;
+  height: 5rem;
+
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+td.user a {
+  text-decoration: none;
+}
+
+td.user a p {
+  font-weight: bold;
+}
+
+td .remove {
+  background: none;
+  border: none;
+
+  color: #f75a67cd;
+
+  cursor: pointer;
+}
+
+td .remove:hover {
+  color: #f84b59;
+}
+
+.scrollable {
+  width: 100%;
+  height: 30rem; 
+  display: block ;
+  overflow: auto;
+  
+}
