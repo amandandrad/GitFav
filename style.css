@@ -95,22 +95,17 @@ header img {
   margin-right: 0.5rem;
   height: 1.6rem; 
   width: 1.6rem; 
-  
 }
 
 .search button:hover img {
     filter: brightness(0) invert(30%) sepia(1) saturate(5000%) hue-rotate(170deg);
 }
 
-
-
 .search button span {
   color: var(--text-color);
   font-size: 1.0rem;
   font-weight: bold;
-  
 }
-
 
 .search button:hover span {
   color: #065E7C;
@@ -118,26 +113,40 @@ header img {
 
 .search button:hover {
   background-color: #fffffff0;
-  
-  
 }
 
 table {
   width: 100%;
-  height: 30rem;
   border: 1px solid #4A808C;
   border-spacing: 0;
   border-radius: 1.5rem;
   overflow: hidden; 
+  display: block;
 }
 
 table * {
   font-size: 1.4rem;
   color: var(--text-color);
-  
+}
+
+thead, tbody { 
+  display: block;
+} 
+
+thead tr,
+tbody tr {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr;
+  align-items: center;
 }
 
 /* está interferindo na largura do tbody*/
+.scrollable {
+  width: 100%;
+  height: 20rem;
+  display: block ;
+  overflow: auto;
+}
 
 
 .scrollable::-webkit-scrollbar {
@@ -229,12 +238,4 @@ td .remove {
 
 td .remove:hover {
   color: #f84b59;
-}
-
-.scrollable {
-  width: 100%;
-  height: 30rem; 
-  display: block ;
-  overflow: auto;
-  
 }
