@@ -3,6 +3,7 @@
 <head>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&family=Roboto:wght@700&display=swap" rel="stylesheet">
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,21 +29,27 @@
         </button>
       </div>
     </header>
-    <table>
-      <thead>
-        <tr>
-          <th>Usuário</th>
-          <th>Repositórios</th>
-          <th>Seguidores</th>
-          <th>Ação</th>
-        </tr>
-      </thead>
-      <tbody class="scrollable" width="100%">
+    <div class="content-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Usuário</th>
+            <th>Repositórios</th>
+            <th>Seguidores</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody class="scrollable">
+        </tbody>
+      </table>
 
-        <!--<img src="./assets/star1.svg" alt="">-->
-        
-      </tbody>
-    </table>
+      <div class="empty-state hide">
+        <div class="no-favorite">
+          <img src="./assets/star1.svg" alt="ícone de estrela" />
+          <h2>Nenhum favorito ainda</h2>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 </html>

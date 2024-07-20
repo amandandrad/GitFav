@@ -7,25 +7,33 @@
 :root {
   font-size: 62.5%;
 
-  --ff-primary: 'Poppins', sans-serif;
+  --font-main: 'Poppins', sans-serif;
   --text-color: #E1E1E6;
+  --text-no-fav: #4E5455;
 
-  
   --thead: #092D38;
-  --primary-color: #06161b7e;
+  --primary-color-nofav: #06161b7e;
   --secondary-color: #06181ccc;
-  
+  --input: #06181C;
+  --button: #065E7C;
+  --button-hover: #fffffff0;
+  --scroll-border: #4A808C; 
+  --remove: #f84b59; 
 }
 
 body {
   font-size: 1.6rem;
-  color: var(--text-color);
   background-color: #000000;
 }
 
-body * {
-  font-family: var(--ff-primary);
+body, .search input, .search button span, table * {
+  color: var(--text-color);
 }
+
+button, input, th, p, td {
+  font-family: var(--font-main);
+}
+
 
 .sr-only {
   position: absolute;
@@ -49,13 +57,12 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   margin: 2.5rem 0;
 }
 
 header img {
   height: 14rem; 
-    width: 14rem; 
+  width: 14rem; 
 }
 
 .search {
@@ -71,16 +78,15 @@ header img {
   border: none;
   border-radius: .4rem ;
   padding: 0 1.4rem;
-  background-color: #06181C;
+  background-color: var(--input);
   font-size: 1.2rem;
-  color: var(--text-color);
 }
 
 .search button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #065E7C;
+  background-color: var(--button);
   border-radius: .4rem ;
   height: 3.2rem;
   width: 12rem;
@@ -95,50 +101,52 @@ header img {
   margin-right: 0.5rem;
   height: 1.6rem; 
   width: 1.6rem; 
-  
 }
 
 .search button:hover img {
     filter: brightness(0) invert(30%) sepia(1) saturate(5000%) hue-rotate(170deg);
 }
 
-
-
 .search button span {
-  color: var(--text-color);
   font-size: 1.0rem;
   font-weight: bold;
-  
 }
 
-
 .search button:hover span {
-  color: #065E7C;
+  color: var(--button);
 }
 
 .search button:hover {
-  background-color: #fffffff0;
-  
-  
+  background-color: var(--button-hover);
 }
 
 table {
   width: 100%;
-  height: 30rem;
-  border: 1px solid #4A808C;
-  border-spacing: 0;
-  border-radius: 1.5rem;
-  overflow: hidden; 
+  border-spacing: 0; 
+  display: block;
 }
 
 table * {
   font-size: 1.4rem;
-  color: var(--text-color);
-  
 }
 
-/* está interferindo na largura do tbody*/
+thead, tbody { 
+  display: block;
+} 
 
+thead tr,
+tbody tr {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr;
+  align-items: center;
+}
+
+.scrollable {
+  width: 100%;
+  max-height: 30rem; 
+  display: block ;
+  overflow: auto; 
+}
 
 .scrollable::-webkit-scrollbar {
   width: 0.4rem; 
@@ -150,17 +158,15 @@ table * {
 }
 
 .scrollable::-webkit-scrollbar-thumb {
-  background: #4A808C; 
+  background: var(--scroll);
   border-radius: 1rem 
 }
-
 
 table th {
   background: var(--thead);
   text-align: left;
   font-weight: bold;
   padding: 1.5rem;
-  
 }
 
 table th:first-child {
@@ -171,7 +177,6 @@ table th:last-child {
   border-top-right-radius: 1.5rem;
 }
 
-/* não funcionou*/
 table tr:last-child td:first-child  {
   border-bottom-left-radius: 1.5rem;
 }
@@ -180,10 +185,8 @@ table tr:last-child td:last-child {
   border-bottom-right-radius: 1.5rem;
 }
 
-
 table tr:nth-child(even) {
   background: var(--secondary-color);
-  
 }
 
 table tr:nth-child(odd) {
@@ -201,11 +204,9 @@ td.user {
   gap: 1rem;
 }
 
-
 td.user img {
   width: 5rem;
   height: 5rem;
-
   object-fit: cover;
   border-radius: 50%;
 }
@@ -221,20 +222,38 @@ td.user a p {
 td .remove {
   background: none;
   border: none;
-
   color: #f75a67cd;
-
   cursor: pointer;
 }
 
 td .remove:hover {
-  color: #f84b59;
+  color: var(--remove);
 }
 
-.scrollable {
-  width: 100%;
-  height: 30rem; 
-  display: block ;
-  overflow: auto;
-  
+.hide {
+  display: none;
+}
+
+.no-favorite {
+  font-family: "Roboto Mono", monospace;
+  font-weight: 700;
+  color: var(--text-no-fav);
+  font-size: 1.5rem;
+  background-color: var(--text-no-fav);
+  height: 30rem;
+  display: flex;  
+  justify-content: center; 
+  align-items: center;
+  gap: 4rem;
+}
+
+.no-favorite img {
+  width: 10rem;
+  height: 10rem;
+}
+
+.content-container {
+  border: 1px solid var(--scroll-border);
+  border-radius: 1.5rem; 
+  overflow: hidden; 
 }

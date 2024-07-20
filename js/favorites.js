@@ -1,17 +1,15 @@
 import { GithubUser } from "./GithubUser.js"
 
-
+// classe que vai conter a lógica dos dados
+// como os dados serão estruturados
 export class Favorites {
   constructor(root) {
-    this.root = document.querySelector(root);
-    this.load();
-
-    
+    this.root = document.querySelector(root)
+    this.load()
   }
 
   load() {
     this.entries = JSON.parse(localStorage.getItem('@github-favorites:')) || []
-      
   }
 
   save() {
@@ -24,7 +22,7 @@ export class Favorites {
       const userExists = this.entries.find(entry => entry.login === username)
 
       if(userExists) {
-        throw new Error('Usuário já cadastrado!')
+        throw new Error('Usuário já cadastrado')
       }
 
 
@@ -41,30 +39,40 @@ export class Favorites {
     } catch(error) {
       alert(error.message)
     }
-}
+  }
 
   delete(user) {
     const filteredEntries = this.entries
-      .filter(entry => entry.login !== user.login);
+      .filter(entry => entry.login !== user.login)
 
-    this.entries = filteredEntries;
-    this.update();
+    this.entries = filteredEntries
+    this.update()
     this.save()
   }
 }
 
+// classe que vai criar a visualização e eventos do HTML
 export class FavoritesView extends Favorites {
   constructor(root) {
-    super(root);
+    super(root)
 
-    this.tbody = this.root.querySelector("table tbody");
+    this.tbody = this.root.querySelector('table tbody')
 
-    this.update();
+    this.update()
     this.onadd()
+    this.emptyState()
   }
 
   onadd() {
     const addButton = this.root.querySelector('.search button')
+
+    window.document.onkeyup = event => {
+      if(event.key === "Enter"){ 
+        const { value } = this.root.querySelector('.search input')
+        this.add(value)
+      }
+    }
+    
     addButton.onclick = () => {
       const { value } = this.root.querySelector('.search input')
 
@@ -73,58 +81,70 @@ export class FavoritesView extends Favorites {
   }
 
   update() {
-    this.removeAllTr();
+    this.removeAllTr()
+
     this.entries.forEach( user => {
-      const row = this.createRow();
+      const row = this.createRow()
 
-      row.querySelector(
-        ".user img"
-      ).src = `https://github.com/${user.login}.png`;
-      row.querySelector(".user img").alt = `Ìmagem de ${user.name}`;
-      row.querySelector(".user a").href = `https://github.com/${user.login}`
-      row.querySelector(".user p").textContent = user.name;
-      row.querySelector(".user span").textContent = user.login;
-      row.querySelector(".repositories").textContent = user.public_repos;
-      row.querySelector(".followers").textContent = user.followers;
+      row.querySelector('.user img').src = `https://github.com/${user.login}.png`
+      row.querySelector('.user img').alt = `Imagem de ${user.name}`
+      row.querySelector('.user a').href = `https://github.com/${user.login}`
+      row.querySelector('.user p').textContent = user.name
+      row.querySelector('.user span').textContent = user.login
+      row.querySelector('.repositories').textContent = user.public_repos
+      row.querySelector('.followers').textContent = user.followers
 
-      row.querySelector(".remove").onclick = () => {
-        const isOk = confirm("Tem certeza que deseja deletar essa linha?");
-        if (isOk) {
-          this.delete(user);
+      row.querySelector('.remove').onclick = () => {
+        const isOk = confirm('Tem certeza que deseja deletar essa linha?')
+        if(isOk) {
+          this.delete(user)
         }
-      };
+      }
 
-      this.tbody.append(row);
-    });
+      this.tbody.append(row)
+    })
+    this.emptyState(); 
   }
 
   createRow() {
-    const tr = document.createElement("tr");
+    const tr = document.createElement('tr')
 
     tr.innerHTML = `
-    
       <td class="user">
-        <img
-          src="https://github.com/amandandrad.png"
-          alt="Foto de Amanda Andrade"
-        />
-        <a href="https://github.com/amandandrad" target="_blank">
-          <p>Amanda Andrade</p>
-          <span>amandandrad</span>
+        <img src="https://github.com/maykbrito.png" alt="Imagem de maykbrito">
+        <a href="https://github.com/maykbrito" target="_blank">
+          <p>Mayk Brito</p>
+          <span>maykbrito</span>
         </a>
       </td>
+      <td class="repositories">
+        76
+      </td>
+      <td class="followers">
+        9589
+      </td>
+      <td>
+        <button class="remove">Remover</button>
+      </td>
+      
+    `
 
-      <td class="repositories">18</td>
-      <td class="followers">16</td>
-      <td><button class="remove">Remover</button></td>
-    `;
-
-    return tr;
+    return tr
   }
 
   removeAllTr() {
-    this.tbody.querySelectorAll("tr").forEach((tr) => {
-      tr.remove();
-    });
+    this.tbody.querySelectorAll('tr')
+      .forEach((tr) => {
+        tr.remove()
+      })  
+  }
+
+
+   emptyState() {
+    if (this.entries.length === 0) {
+      this.root.querySelector('.empty-state').classList.remove('hide')
+    } else {
+      this.root.querySelector('.empty-state').classList.add('hide')
+    }
   }
 }
